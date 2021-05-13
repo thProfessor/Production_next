@@ -1,27 +1,21 @@
 import { useSelector, shallowEqual } from "react-redux";
 import styled from "styled-components";
 
-const getPost = () => {
-  return useSelector(
-    (state) => ({
-      posts: state.posts.posts,
-    }),
-    shallowEqual
-  );
-};
+
+const getCategories = ()=> (useSelector((state)=>({categories:state.posts.categories,}),shallowEqual));
+const getFeaturedJobs =()=> (useSelector((state)=>({featuredJobs:state.posts.featuredJobs,}),shallowEqual));
 
 const Lists = () => {
-  const { posts } = getPost();
+  const {categories} = getCategories();
+  const {featuredJobs} = getFeaturedJobs();
   return (
     <>
-      {posts &&
-        posts.map((post) => (
-          <List id={post.id} size="24px" color="red">
-            {post.title}
-          </List>
-        ))}
+      {
+        console.log(categories,featuredJobs)
+      }
     </>
   );
+  
 };
 
 export default Lists;
