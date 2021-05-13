@@ -1,11 +1,11 @@
 import axios from 'axios';
 import {API_ENDPOINT} from './baseURL';
-import { getItem } from '../utility/localStorageControl';
+// import { getItem } from '../utility/localStorageControl';
 
 const authHeader = () => ({
   'Content-Type': 'application/json',
    'Accept': 'application/json',
-   'Authorization': getItem('accessToken')?`Token ${getItem('accessToken')}`:undefined,
+  //  'Authorization': getItem('accessToken')?`Token ${getItem('accessToken')}`:undefined,
 });
 
 const client = axios.create({
