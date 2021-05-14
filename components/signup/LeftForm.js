@@ -2,19 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { StyledImage, Wrapper } from "./SignupComp";
 
-function LeftForm() {
+function LeftForm({ image }) {
   return (
     <LeftContainer>
       <Wrapper direction="column">
         <StyledImage
           width="103"
-          src="./images/logo.png"
+          src="../images/logo.png"
           alt="logo"
           style={{ position: "absolute", top: "35px", left: "28px" }}
         />
         <StyledImage
           width="445.89"
-          src="./images/Signup_newuser1.png"
+          src={image}
           alt="desk"
           style={{ transform: "translateY(10%)" }}
         />

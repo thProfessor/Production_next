@@ -142,7 +142,7 @@ function RightForm() {
           style={{ display: "flex", justifyContent: "center" }}
         >
           Already on Skilzen? Go to
-          <Link href="#">
+          <Link href="/auth/signin">
             <a style={{ color: primary.cherry, marginLeft: "3px" }}>Sign in</a>
           </Link>
         </Formheading>

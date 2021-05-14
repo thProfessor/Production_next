@@ -1,18 +1,18 @@
-import LeftForm from "../components/signup/LeftForm";
-import RightForm from "../components/signup/RightForm";
+import LeftForm from "../../components/signup/LeftForm";
+import RightSignInForm from "../../components/signup/RightSignInForm";
 import {
   Wrapper,
   Slide,
   Background,
   StyledImage,
-} from "../components/signup/SignupComp";
+} from "../../components/signup/SignupComp";
 
-function signup() {
+function signin() {
   return (
     <>
       <Background>
         <StyledImage
-          src="./images/vector/large.png"
+          src="../images/vector/large.png"
           alt="vector"
           style={{
             position: "absolute",
@@ -23,12 +23,12 @@ function signup() {
         />
         <Slide>
           <Wrapper direction="row">
-            <LeftForm />
-            <RightForm />
+            <LeftForm image="../images/Signin.png" />
+            <RightSignInForm />
           </Wrapper>
         </Slide>
         <StyledImage
-          src="./images/vector/small.png"
+          src="../images/vector/small.png"
           alt="vector"
           style={{
             position: "absolute",
@@ -42,4 +42,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default signin;
