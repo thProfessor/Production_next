@@ -1,18 +1,45 @@
-import SignUp_and_SetProfile from "../components/SignUpPage/SignUpForm";
-import { isAdminLogged } from "../redux/actions/auth.actions";
-import { initializeStore } from "../redux/store";
+import LeftForm from "../components/signup/LeftForm";
+import RightForm from "../components/signup/RightForm";
+import {
+  Wrapper,
+  Slide,
+  Background,
+  StyledImage,
+} from "../components/signup/SignupComp";
 
-export default function signup() {
-  return <SignUp_and_SetProfile />;
+function signup() {
+  return (
+    <>
+      <Background>
+        <StyledImage
+          src="./images/vector/large.png"
+          alt="vector"
+          style={{
+            position: "absolute",
+            zIndex: "-1",
+            bottom: "0px",
+            left: "0px",
+          }}
+        />
+        <Slide>
+          <Wrapper direction="row">
+            <LeftForm />
+            <RightForm />
+          </Wrapper>
+        </Slide>
+        <StyledImage
+          src="./images/vector/small.png"
+          alt="vector"
+          style={{
+            position: "absolute",
+            zIndex: "-1",
+            top: "0px",
+            right: "0px",
+          }}
+        />
+      </Background>
+    </>
+  );
 }
 
-// The date returned here will be different for every request that hits the page,
-// that is because the page becomes a serverless function instead of being statically
-// exported when you use `getServerSideProps` or `getInitialProps`
-export async function getServerSideProps() {
-  const reduxStore = initializeStore();
-  const { dispatch } = reduxStore;
-  await dispatch(isAdminLogged());
-
-  return { props: { initialReduxState: reduxStore.getState() } };
-}
+export default signup;

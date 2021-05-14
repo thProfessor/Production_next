@@ -10,11 +10,11 @@ export const colorsDark = {
 
 // light theme
 
-export const colorsLight = {
-  background: "rgba(205, 205, 205, 0.12);",
-  backgroundSecondary: "#ec1f28;",
-  outline: "#d3d3d3",
-  textSecondary: "#aaaaaa",
+export const primary = {
+  formdark: "#4b4b4b",
+  formgrey: "#98a8b8",
+  cherry: "#ee3b43",
+  formDarkGrey: "#717171",
   border: "#EAEAEA",
 };
 
