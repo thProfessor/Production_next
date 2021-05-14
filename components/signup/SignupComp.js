@@ -42,6 +42,9 @@ export const Input = styled(TextField)`
   .MuiInput-underline:after {
     border-color: ${(props) => props.formdark};
   }
+  ${tablet} {
+    max-width: 460px;
+  }
 `;
 export const CheckBox = styled(Checkbox)`
   .MuiSvgIcon-root {
