@@ -100,38 +100,39 @@ function RightForm() {
             type="number"
           />
         </Wrapper>
-
-        <Input
-          onChange={formOnChange}
-          name="password"
-          value={form.password}
-          formdark={primary.formdark}
-          formgrey={primary.formgrey}
-          width="2"
-          label="Password"
-          type="password"
-        />
-        <Input
-          onChange={formOnChange}
-          name="confirmPassword"
-          value={form.confirmPassword}
-          formdark={primary.formdark}
-          formgrey={primary.formgrey}
-          width="2"
-          label="Re-enter Password"
-          type="password"
-        />
-        <FormControlLabel
-          control={
-            <CheckBox
-              checked={check}
-              onChange={handleCheck}
-              name="checkedB"
-              color={primary.cherry}
-            />
-          }
-          label="Keep me logged in"
-        />
+        <Wrapper direction="column">
+          <Input
+            onChange={formOnChange}
+            name="password"
+            value={form.password}
+            formdark={primary.formdark}
+            formgrey={primary.formgrey}
+            width="2"
+            label="Password"
+            type="password"
+          />
+          <Input
+            onChange={formOnChange}
+            name="confirmPassword"
+            value={form.confirmPassword}
+            formdark={primary.formdark}
+            formgrey={primary.formgrey}
+            width="2"
+            label="Re-enter Password"
+            type="password"
+          />
+          <FormControlLabel
+            control={
+              <CheckBox
+                checked={check}
+                onChange={handleCheck}
+                name="checkedB"
+                color={primary.cherry}
+              />
+            }
+            label="Keep me logged in"
+          />
+        </Wrapper>
         <StyledButton width="4" borderColor={primary.cherry} onClick={onSubmit}>
           SIGN UP
         </StyledButton>

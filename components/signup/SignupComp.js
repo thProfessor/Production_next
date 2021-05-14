@@ -2,6 +2,7 @@ import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import { Checkbox } from "@material-ui/core";
 import { fontFamily, minimal, primary } from "../../styles/pallete";
+import { mobile, tablet } from "../../styles/mediaQuerries";
 
 export const StyledForm = styled.form`
   display: flex;
@@ -20,9 +21,12 @@ export const Wrapper = styled.div`
   display: flex;
   column-gap: 50px;
   flex-direction: ${(props) => props.direction};
+  ${tablet} {
+    flex-direction: column;
+  }
 `;
 export const Input = styled(TextField)`
-  min-width: ${(props) => props.width * 230}px;
+  max-width: ${(props) => props.width * 230}px;
   .MuiInputBase-root {
     color: ${(props) => props.formgrey};
     font-family: ${fontFamily.font};
@@ -60,7 +64,7 @@ export const StyledButton = styled.button`
   font-family: "Gordita";
   font-weight: 500;
   font-size: 14px;
-  min-width: ${(props) => props.width * 110}px;
+  max-width: ${(props) => props.width * 110}px;
   cursor: pointer;
   background: transparent;
   padding: 0.8em 0;
@@ -77,16 +81,26 @@ export const StyledButton = styled.button`
 export const StyledImage = styled.img`
   height: auto;
   width: ${(props) => props.width}px;
+  ${mobile} {
+    width: ${(props) => (props.width === "103" ? "25%" : "70%")};
+    margin: 25px auto;
+  }
 `;
 
 export const Slide = styled.div`
   background: ${minimal.white};
   box-shadow: 0px 56px 68px rgba(0, 0, 0, 0.07);
   border-radius: 20px;
+  ${tablet} {
+    padding: 20px;
+  }
 `;
 export const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  ${tablet} {
+    height: 100%;
+  }
 `;
