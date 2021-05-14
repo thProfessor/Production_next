@@ -9,18 +9,22 @@ export const colorsDark = {
 };
 
 // light theme
+export const fontFamily = {
+  font: "Gordita",
+};
 
 export const primary = {
   formdark: "#4b4b4b",
   formgrey: "#98a8b8",
   cherry: "#ee3b43",
   formDarkGrey: "#717171",
-  border: "#EAEAEA",
+  checkbox: "#35424d",
 };
 
 //text colors
-export const textColors = {
+export const minimal = {
   // shades of grey
+  white: "#fff",
   content: "#6B6E6F",
   toast: "#828282",
   pretitle: "#a7a6a6",

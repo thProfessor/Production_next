@@ -6,19 +6,13 @@ import {
   StyledForm,
   Wrapper,
   Formheading,
-  CheckBox,
 } from "./SignupComp";
 
 function RightForm() {
-  const [check, setCheck] = useState(false);
   const [form, setForm] = useState({
     email: "",
     contact: "",
   });
-
-  const handleCheck = () => {
-    setCheck((check) => !check);
-  };
 
   const formOnChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });

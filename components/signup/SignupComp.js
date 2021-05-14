@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import { Checkbox } from "@material-ui/core";
+import { fontFamily, minimal, primary } from "../../styles/pallete";
 
 export const StyledForm = styled.form`
   display: flex;
@@ -11,7 +12,7 @@ export const StyledForm = styled.form`
 `;
 export const Formheading = styled.h1`
   color: ${(props) => props.color};
-  font-family: "Gordita";
+  font-family: ${fontFamily.font};
   font-weight: ${(props) => props.weight * 100}px;
   font-size: ${(props) => props.size}px;
 `;
@@ -24,15 +25,15 @@ export const Input = styled(TextField)`
   min-width: ${(props) => props.width * 230}px;
   .MuiInputBase-root {
     color: ${(props) => props.formgrey};
-    font-family: "Gordita";
+    font-family: ${fontFamily.font};
   }
   .MuiFormLabel-root {
     color: ${(props) => props.formdark};
-    font-family: "Gordita";
+    font-family: ${fontFamily.font};
   }
   .MuiFormLabel-root.Mui-focused {
     color: ${(props) => props.formdark};
-    font-family: "Gordita";
+    font-family: ${fontFamily.font};
   }
   .MuiInput-underline:after {
     border-color: ${(props) => props.formdark};
@@ -44,8 +45,8 @@ export const CheckBox = styled(Checkbox)`
   }
   .MuiTypography-body1 {
     font-size: 12px;
-    font-family: "Gordita";
-    color: #35424d;
+    font-family: ${fontFamily.font};
+    color: ${primary.checkbox};
     font-weight: 400;
   }
 `;
@@ -65,11 +66,11 @@ export const StyledButton = styled.button`
   padding: 0.8em 0;
   & :hover {
     background: ${(props) => props.borderColor};
-    color: #fff;
+    color: ${minimal.white};
   }
   & :active {
     background: ${(props) => props.borderColor};
-    color: #fff;
+    color: ${minimal.white};
   }
 `;
 
@@ -79,7 +80,7 @@ export const StyledImage = styled.img`
 `;
 
 export const Slide = styled.div`
-  background: #ffffff;
+  background: ${minimal.white};
   box-shadow: 0px 56px 68px rgba(0, 0, 0, 0.07);
   border-radius: 20px;
 `;
