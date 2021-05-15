@@ -63,17 +63,17 @@ function RightForm() {
       });
     } else {
       console.log("call API!!");
+      const newUser = {
+        firstname: form.firstname,
+        lastname: form.lastname,
+        email: form.email,
+        mobile: form.mobile,
+        password: form.password,
+      };
+      console.log(newUser);
     }
 
-    const newUser = {
-      firstname: form.firstname,
-      lastname: form.lastname,
-      email: form.email,
-      mobile: form.mobile,
-      password: form.password,
-    };
-
-    console.log(newUser);
+    
   };
   return (
     <Wrapper direction="column" style={{ paddingRight: "35px" }}>

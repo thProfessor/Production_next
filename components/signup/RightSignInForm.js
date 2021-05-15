@@ -1,4 +1,4 @@
-import { FormControlLabel } from "@material-ui/core";
+import { FormControlLabel, Snackbar } from "@material-ui/core";
 import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
@@ -13,6 +13,8 @@ import {
   Formheading,
   CheckBox,
 } from "./SignupComp";
+import validator from "validator";
+import { Alert } from "@material-ui/lab";
 
 function RightForm() {
   const [check, setCheck] = useState(false);
@@ -29,14 +31,20 @@ function RightForm() {
   const formOnChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
+  const [notify, setNotify] = useState({ open: false, message: "", type: "" });
   const onSubmit = (e) => {
     e.preventDefault();
-    const oldUser = {
-      email: form.email,
-      password: form.password,
-    };
-    console.log(oldUser);
+    if(form.email!==''||form.password!==''){
+      setNotify({ open: true, message: "Fill all the fields", type: "error" });
+    }
+    else{
+      const oldUser = {
+        email: form.email,
+        password: form.password,
+      };
+      console.log(oldUser);
+    }
+    
   };
   return (
     <Wrapper
@@ -69,6 +77,7 @@ function RightForm() {
           width="2"
           label="Email"
           type="email"
+          valid={validator.isEmail(form.email)}
         />
         <PasswordWrapper>
           <Input
@@ -80,6 +89,7 @@ function RightForm() {
             width="2"
             label="Password"
             type={showPassword ? "text" : "password"}
+            valid={form.password.length>0}
           />
           {showPassword ? (
             <Eye onClick={() => setShowPassword(false)} />
@@ -122,6 +132,20 @@ function RightForm() {
           </Link>
         </Formheading>
       </StyledForm>
+      <Snackbar
+        open={notify.open}
+        autoHideDuration={3000}
+        onClose={() => setNotify({ open: false, message: "", type: "" })}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          variant="filled"
+          onClose={() => setNotify({ open: false, message: "", type: "" })}
+          severity={notify.type}
+        >
+          {notify.message}
+        </Alert>
+      </Snackbar>
     </Wrapper>
   );
 }
