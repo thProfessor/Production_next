@@ -27,6 +27,7 @@ export const Wrapper = styled.div`
 `;
 export const Input = styled(TextField)`
   max-width: ${(props) => props.width * 230}px;
+  width: 100%;
   .MuiInputBase-root {
     color: ${(props) => props.formgrey};
     font-family: ${fontFamily.font};

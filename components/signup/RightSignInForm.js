@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
 import { primary } from "../../styles/pallete";
+import { FaRegEye } from "react-icons/fa";
+import { RiEyeCloseLine } from "react-icons/ri";
 import {
   Input,
   StyledButton,
@@ -14,6 +16,7 @@ import {
 
 function RightForm() {
   const [check, setCheck] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -67,16 +70,23 @@ function RightForm() {
           label="Email"
           type="email"
         />
-        <Input
-          onChange={formOnChange}
-          name="password"
-          value={form.password}
-          formdark={primary.formdark}
-          formgrey={primary.formgrey}
-          width="2"
-          label="Password"
-          type="password"
-        />
+        <PasswordWrapper>
+          <Input
+            onChange={formOnChange}
+            name="password"
+            value={form.password}
+            formdark={primary.formdark}
+            formgrey={primary.formgrey}
+            width="2"
+            label="Password"
+            type={showPassword ? "text" : "password"}
+          />
+          {showPassword ? (
+            <Eye onClick={() => setShowPassword(false)} />
+          ) : (
+            <CloseEye onClick={() => setShowPassword(true)} />
+          )}
+        </PasswordWrapper>
         <Wrapper direction="row" style={{ justifyContent: "space-between" }}>
           <FormControlLabel
             control={
@@ -121,5 +131,24 @@ export default RightForm;
 const A = styled.a`
   color: ${primary.cherry};
   margin-left: "3px";
+  cursor: pointer;
+`;
+const PasswordWrapper = styled.div`
+  display: flex;
+  position: relative;
+  width: 100%;
+`;
+const Eye = styled(FaRegEye)`
+  color: ${primary.cherry};
+  position: absolute;
+  top: 1.2em;
+  right: 0;
+  cursor: pointer;
+`;
+const CloseEye = styled(RiEyeCloseLine)`
+  color: ${primary.cherry};
+  position: absolute;
+  top: 1.2em;
+  right: 0;
   cursor: pointer;
 `;

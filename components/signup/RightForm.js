@@ -2,6 +2,9 @@ import { FormControlLabel } from "@material-ui/core";
 import Link from "next/link";
 import { useState } from "react";
 import { primary } from "../../styles/pallete";
+import { FaRegEye } from "react-icons/fa";
+import { RiEyeCloseLine } from "react-icons/ri";
+
 import {
   Input,
   StyledButton,
@@ -10,9 +13,11 @@ import {
   Formheading,
   CheckBox,
 } from "./SignupComp";
+import styled from "styled-components";
 
 function RightForm() {
   const [check, setCheck] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
     name: "",
     lastname: "",
@@ -101,16 +106,24 @@ function RightForm() {
           />
         </Wrapper>
         <Wrapper direction="column">
-          <Input
-            onChange={formOnChange}
-            name="password"
-            value={form.password}
-            formdark={primary.formdark}
-            formgrey={primary.formgrey}
-            width="2"
-            label="Password"
-            type="password"
-          />
+          <PasswordWrapper>
+            <Input
+              onChange={formOnChange}
+              name="password"
+              value={form.password}
+              formdark={primary.formdark}
+              formgrey={primary.formgrey}
+              width="2"
+              label="Password"
+              type={showPassword ? "text" : "password"}
+            />
+            {showPassword ? (
+              <Eye onClick={() => setShowPassword(false)} />
+            ) : (
+              <CloseEye onClick={() => setShowPassword(true)} />
+            )}
+          </PasswordWrapper>
+
           <Input
             onChange={formOnChange}
             name="confirmPassword"
@@ -153,3 +166,23 @@ function RightForm() {
 }
 
 export default RightForm;
+
+const PasswordWrapper = styled.div`
+  display: flex;
+  position: relative;
+  width: 100%;
+`;
+const Eye = styled(FaRegEye)`
+  color: ${primary.cherry};
+  position: absolute;
+  top: 1.2em;
+  right: 0;
+  cursor: pointer;
+`;
+const CloseEye = styled(RiEyeCloseLine)`
+  color: ${primary.cherry};
+  position: absolute;
+  top: 1.2em;
+  right: 0;
+  cursor: pointer;
+`;
