@@ -3,7 +3,9 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
     * {
       box-sizing: border-box;
-      font-family:"Gordita"
+      font-family:"Gordita";
+      margin: 0;
+      padding:0;
     }
     html, body {
       font-family: "Gordita",Helvetica-Neue,Helvetica,Arial,sans-serif;
