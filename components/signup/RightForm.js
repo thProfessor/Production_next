@@ -1,4 +1,5 @@
-import { FormControlLabel } from "@material-ui/core";
+import { FormControlLabel, Snackbar } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import Link from "next/link";
 import { useState } from "react";
 import { primary } from "../../styles/pallete";
@@ -14,12 +15,13 @@ import {
   CheckBox,
 } from "./SignupComp";
 import styled from "styled-components";
+import validator from "validator";
 
 function RightForm() {
   const [check, setCheck] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
-    name: "",
+    firstname: "",
     lastname: "",
     email: "",
     mobile: "",
@@ -32,15 +34,45 @@ function RightForm() {
   const formOnChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  const [notify, setNotify] = useState({ open: false, message: "", type: "" });
   const onSubmit = (e) => {
     e.preventDefault();
+    if (
+      form.firstname === "" ||
+      form.lastname === "" ||
+      form.email === "" ||
+      form.mobile === "" ||
+      form.password === "" ||
+      form.confirmPassword === ""
+    ) {
+      setNotify({ open: true, message: "Fill all the fields", type: "error" });
+    } else if (!validator.isEmail(form.email)) {
+      setNotify({ open: true, message: "Invalid Email", type: "error" });
+    } else if (form.mobile.length !== 10) {
+      setNotify({
+        open: true,
+        message: "Invalid Mobile Number",
+        type: "error",
+      });
+    } else if (form.password !== form.confirmPassword) {
+      setNotify({
+        open: true,
+        message: "Passwords not matched",
+        type: "error",
+      });
+    } else {
+      console.log("call API!!");
+    }
+
     const newUser = {
-      name: form.name,
+      firstname: form.firstname,
       lastname: form.lastname,
       email: form.email,
       mobile: form.mobile,
       password: form.password,
     };
+
     console.log(newUser);
   };
   return (
@@ -65,12 +97,13 @@ function RightForm() {
         <Wrapper direction="row">
           <Input
             onChange={formOnChange}
-            name="name"
-            value={form.name}
+            name="firstname"
+            value={form.firstname}
             formdark={primary.formdark}
             formgrey={primary.formgrey}
             width="1"
-            label="Name"
+            label="First Name"
+            valid={form.firstname.length > 0}
           />
           <Input
             onChange={formOnChange}
@@ -80,6 +113,7 @@ function RightForm() {
             formgrey={primary.formgrey}
             width="1"
             label="Last Name"
+            valid={form.lastname.length > 0}
           />
         </Wrapper>
 
@@ -93,6 +127,7 @@ function RightForm() {
             width="1"
             label="Email Address"
             type="email"
+            valid={validator.isEmail(form.email)}
           />
           <Input
             onChange={formOnChange}
@@ -103,8 +138,10 @@ function RightForm() {
             width="1"
             label="Mobile Number"
             type="number"
+            valid={form.mobile.length === 10}
           />
         </Wrapper>
+
         <Wrapper direction="column">
           <PasswordWrapper>
             <Input
@@ -116,6 +153,7 @@ function RightForm() {
               width="2"
               label="Password"
               type={showPassword ? "text" : "password"}
+              valid={form.password.length >= 8}
             />
             {showPassword ? (
               <Eye onClick={() => setShowPassword(false)} />
@@ -133,6 +171,10 @@ function RightForm() {
             width="2"
             label="Re-enter Password"
             type="password"
+            valid={
+              form.password.length >= 8 &&
+              form.password === form.confirmPassword
+            }
           />
           <FormControlLabel
             control={
@@ -161,6 +203,20 @@ function RightForm() {
           </Link>
         </Formheading>
       </StyledForm>
+      <Snackbar
+        open={notify.open}
+        autoHideDuration={3000}
+        onClose={() => setNotify({ open: false, message: "", type: "" })}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          variant="filled"
+          onClose={() => setNotify({ open: false, message: "", type: "" })}
+          severity={notify.type}
+        >
+          {notify.message}
+        </Alert>
+      </Snackbar>
     </Wrapper>
   );
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import { Checkbox } from "@material-ui/core";
-import { fontFamily, minimal, primary } from "../../styles/pallete";
+import { fontFamily, minimal, primary,secondary } from "../../styles/pallete";
 import { mobile, tablet } from "../../styles/mediaQuerries";
 
 export const StyledForm = styled.form`
@@ -20,6 +20,7 @@ export const Formheading = styled.h1`
 export const Wrapper = styled.div`
   display: flex;
   column-gap: 50px;
+  row-gap:17px;
   flex-direction: ${(props) => props.direction};
   ${tablet} {
     flex-direction: column;
@@ -41,7 +42,8 @@ export const Input = styled(TextField)`
     font-family: ${fontFamily.font};
   }
   .MuiInput-underline:after {
-    border-color: ${(props) => props.formdark};
+    transform:scaleX(1);
+    border-color: ${(props) => props.valid?secondary.greenSecondary:secondary.cherrySecondary};
   }
   ${tablet} {
     max-width: 460px;

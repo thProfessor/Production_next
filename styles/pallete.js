@@ -21,6 +21,11 @@ export const primary = {
   checkbox: "#35424d",
 };
 
+export const secondary ={
+  greenSecondary :'#69DE5D',
+  cherrySecondary:'#FF5C5C',
+  pinkSecondary:'#FFE2E3'
+}
 //text colors
 export const minimal = {
   // shades of grey
