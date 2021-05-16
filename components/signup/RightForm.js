@@ -1,4 +1,4 @@
-import { FormControlLabel, Snackbar } from "@material-ui/core";
+import { FormControlLabel, MenuItem, Select, Snackbar } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,6 +13,7 @@ import {
   Wrapper,
   Formheading,
   CheckBox,
+  MobileInput,
 } from "./SignupComp";
 import styled from "styled-components";
 import validator from "validator";
@@ -129,6 +130,15 @@ function RightForm() {
             type="email"
             valid={validator.isEmail(form.email)}
           />
+          <MobileInput>
+          <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={'india'}
+              // onChange={handleChange}
+            >
+              <MenuItem value={'india'}><img src="https://www.kindpng.com/picc/m/133-1330075_india-transparent-button-png-indian-flag-icon-png.png" width="30" alt="india" srcset="" /></MenuItem>
+          </Select>
           <Input
             onChange={formOnChange}
             name="mobile"
@@ -138,8 +148,8 @@ function RightForm() {
             width="1"
             label="Mobile Number"
             type="number"
-            valid={form.mobile.length === 10}
-          />
+            valid={form.mobile.length === 10} />
+          </MobileInput>
         </Wrapper>
 
         <Wrapper direction="column">

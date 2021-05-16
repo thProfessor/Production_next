@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
-import { Checkbox } from "@material-ui/core";
+import { Checkbox, Select } from "@material-ui/core";
 import { fontFamily, minimal, primary,secondary } from "../../styles/pallete";
 import { mobile, tablet } from "../../styles/mediaQuerries";
 
@@ -19,13 +19,33 @@ export const Formheading = styled.h1`
 `;
 export const Wrapper = styled.div`
   display: flex;
-  column-gap: 50px;
+  column-gap:${props=>props.columnGap||50}px;
   row-gap:17px;
   flex-direction: ${(props) => props.direction};
   ${tablet} {
     flex-direction: column;
   }
 `;
+export const MobileInput = styled.div`
+  display:flex;
+  column-gap:0;
+  width:100%;
+  .MuiSvgIcon-root{
+    margin-top:9px;
+  }
+  .MuiSelect-select.MuiSelect-select{
+    padding-bottom: 0px;
+    margin-bottom: -13px;
+  }
+  .MuiInput-underline:first-child:before{
+    border-bottom:2px solid ${secondary.greenSecondary} !important;
+  }
+  .MuiInput-underline:first-child:hover:before{
+    border-bottom:2px solid ${secondary.greenSecondary} !important;
+  }
+  
+`
+
 export const Input = styled(TextField)`
   max-width: ${(props) => props.width * 230}px;
   width: 100%;
