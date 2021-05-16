@@ -7,12 +7,15 @@ import {
   Wrapper,
   Formheading,
 } from "./SignupComp";
+import { useRouter } from "next/router";
 
 function RightForm() {
   const [form, setForm] = useState({
     email: "",
     contact: "",
   });
+
+  const router = useRouter();
 
   const formOnChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -22,9 +25,10 @@ function RightForm() {
     e.preventDefault();
     const oldUser = {
       email: form.email,
-      password: form.contact,
+      contact: form.contact,
     };
     console.log(oldUser);
+    router.push("/auth/forgotpassword2");
   };
   return (
     <Wrapper direction="column" style={{ paddingRight: "35px" }}>

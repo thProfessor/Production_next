@@ -1,5 +1,5 @@
 import LeftForm from "../../components/signup/LeftForm";
-import RightForgotForm from "../../components/signup/RightForgotForm";
+import RightForgotForm2 from "../../components/signup/RightForgotForm2";
 import {
   Wrapper,
   Slide,
@@ -7,7 +7,7 @@ import {
   StyledImage,
 } from "../../components/signup/SignupComp";
 
-function forgotpassword() {
+function forgotpassword2() {
   return (
     <>
       <Background>
@@ -23,8 +23,8 @@ function forgotpassword() {
         />
         <Slide>
           <Wrapper direction="row">
-            <LeftForm image="../images/forgot_password.png" />
-            <RightForgotForm />
+            <LeftForm image="../images/forgot_password2.png" />
+            <RightForgotForm2 />
           </Wrapper>
         </Slide>
         <StyledImage
@@ -42,4 +42,4 @@ function forgotpassword() {
   );
 }
 
-export default forgotpassword;
+export default forgotpassword2;
