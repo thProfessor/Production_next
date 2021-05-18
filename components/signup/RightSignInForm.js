@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { primary } from "../../styles/pallete";
 import { FaRegEye } from "react-icons/fa";
 import { RiEyeCloseLine } from "react-icons/ri";
+
 import {
   Input,
   StyledButton,
@@ -16,9 +17,13 @@ import {
 import validator from "validator";
 import { Alert } from "@material-ui/lab";
 
+import { useDispatch } from "react-redux";
+import { signIn } from "../../redux/actions/auth.actions";
+
 function RightForm() {
   const [check, setCheck] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -34,17 +39,15 @@ function RightForm() {
   const [notify, setNotify] = useState({ open: false, message: "", type: "" });
   const onSubmit = (e) => {
     e.preventDefault();
-    if(form.email!==''||form.password!==''){
+    if (form.email === "" || form.password === "") {
       setNotify({ open: true, message: "Fill all the fields", type: "error" });
-    }
-    else{
+    } else {
       const oldUser = {
-        email: form.email,
+        username: form.email,
         password: form.password,
       };
-      console.log(oldUser);
+      dispatch(signIn(oldUser));
     }
-    
   };
   return (
     <Wrapper
@@ -89,7 +92,7 @@ function RightForm() {
             width="2"
             label="Password"
             type={showPassword ? "text" : "password"}
-            valid={form.password.length>0}
+            valid={form.password.length > 0}
           />
           {showPassword ? (
             <Eye onClick={() => setShowPassword(false)} />

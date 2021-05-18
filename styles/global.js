@@ -24,7 +24,7 @@ const GlobalStyles = createGlobalStyle`
         color: inherit;
       }
     }
-    @font-face {
+ @font-face {
   font-family: "Gordita";
   font-style: normal;
   font-weight: 400;
