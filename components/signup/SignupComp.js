@@ -133,3 +133,8 @@ export const Background = styled.div`
     height: 100%;
   }
 `;
+
+export const Error = styled.p`
+  color: ${primary.cherry};
+  font-size: 12px;
+`;
