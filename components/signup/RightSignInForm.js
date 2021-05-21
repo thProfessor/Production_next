@@ -15,6 +15,7 @@ import {
 } from "./SignupComp";
 import validator from "validator";
 import { Alert } from "@material-ui/lab";
+import axios from "axios";
 
 function RightForm() {
   const [check, setCheck] = useState(false);
@@ -34,15 +35,21 @@ function RightForm() {
   const [notify, setNotify] = useState({ open: false, message: "", type: "" });
   const onSubmit = (e) => {
     e.preventDefault();
-    if(form.email!==''||form.password!==''){
+    if(form.email===''||form.password===''){
       setNotify({ open: true, message: "Fill all the fields", type: "error" });
     }
     else{
       const oldUser = {
-        email: form.email,
+        username: form.email,
         password: form.password,
       };
-      console.log(oldUser);
+      axios.post('https://skilzen-app.herokuapp.com/api/skilzen/v1/login/',oldUser)
+      .then(res=>{
+        // console.log(res);
+        const {data:{token}} =res;
+        localStorage.setItem('accesstoken',token);
+      })
+      .catch((err)=>console.log(err));
     }
     
   };
