@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import { Checkbox, Select } from "@material-ui/core";
-import { fontFamily, minimal, primary,secondary } from "../../styles/pallete";
+import { fontFamily, minimal, primary, secondary } from "../../styles/pallete";
 import { mobile, tablet } from "../../styles/mediaQuerries";
 
 export const StyledForm = styled.form`
@@ -10,6 +10,9 @@ export const StyledForm = styled.form`
   row-gap: 17px;
   max-width: 450px;
   padding-bottom: 20px;
+  ${mobile} {
+    max-width: 450px;
+  }
 `;
 export const Formheading = styled.h1`
   color: ${(props) => props.color};
@@ -19,32 +22,31 @@ export const Formheading = styled.h1`
 `;
 export const Wrapper = styled.div`
   display: flex;
-  column-gap:${props=>props.columnGap||50}px;
-  row-gap:17px;
+  column-gap: ${(props) => props.columnGap || 50}px;
+  row-gap: 17px;
   flex-direction: ${(props) => props.direction};
   ${tablet} {
     flex-direction: column;
   }
 `;
 export const MobileInput = styled.div`
-  display:flex;
-  column-gap:0;
-  width:100%;
-  .MuiSvgIcon-root{
-    margin-top:9px;
+  display: flex;
+  column-gap: 0;
+  width: 100%;
+  .MuiSvgIcon-root {
+    margin-top: 9px;
   }
-  .MuiSelect-select.MuiSelect-select{
+  .MuiSelect-select.MuiSelect-select {
     padding-bottom: 0px;
     margin-bottom: -13px;
   }
-  .MuiInput-underline:first-child:before{
-    border-bottom:2px solid ${secondary.greenSecondary} !important;
+  .MuiInput-underline:first-child:before {
+    border-bottom: 2px solid ${secondary.greenSecondary} !important;
   }
-  .MuiInput-underline:first-child:hover:before{
-    border-bottom:2px solid ${secondary.greenSecondary} !important;
+  .MuiInput-underline:first-child:hover:before {
+    border-bottom: 2px solid ${secondary.greenSecondary} !important;
   }
-  
-`
+`;
 
 export const Input = styled(TextField)`
   max-width: ${(props) => props.width * 230}px;
@@ -62,8 +64,9 @@ export const Input = styled(TextField)`
     font-family: ${fontFamily.font};
   }
   .MuiInput-underline:after {
-    transform:scaleX(1);
-    border-color: ${(props) => props.valid?secondary.greenSecondary:secondary.cherrySecondary};
+    transform: scaleX(1);
+    border-color: ${(props) =>
+      props.valid ? secondary.greenSecondary : secondary.cherrySecondary};
   }
   ${tablet} {
     max-width: 460px;
@@ -129,4 +132,9 @@ export const Background = styled.div`
   ${tablet} {
     height: 100%;
   }
+`;
+
+export const Error = styled.p`
+  color: ${primary.cherry};
+  font-size: 12px;
 `;

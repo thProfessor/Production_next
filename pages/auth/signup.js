@@ -6,7 +6,7 @@ import {
   Background,
   StyledImage,
 } from "../../components/signup/SignupComp";
-
+import PrivateRoute from "../../utility/PrivateRoute";
 function signup() {
   return (
     <>
@@ -19,7 +19,7 @@ function signup() {
             zIndex: "-1",
             bottom: "50px",
             left: "40px",
-            transform:'scale(1.4) rotate(90deg)'
+            transform: "scale(1.4) rotate(90deg)",
           }}
         />
         <Slide>
@@ -36,7 +36,7 @@ function signup() {
             zIndex: "-1",
             top: "0px",
             right: "50px",
-            transform:'rotate(90deg)'
+            transform: "rotate(90deg)",
           }}
         />
       </Background>
@@ -44,4 +44,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default PrivateRoute(signup);

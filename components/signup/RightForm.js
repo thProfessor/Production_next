@@ -1,4 +1,9 @@
-import { FormControlLabel, MenuItem, Select, Snackbar } from "@material-ui/core";
+import {
+  FormControlLabel,
+  MenuItem,
+  Select,
+  Snackbar,
+} from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import Link from "next/link";
 import { useState } from "react";
@@ -29,6 +34,7 @@ function RightForm() {
     password: "",
     confirmPassword: "",
   });
+
   const handleCheck = () => {
     setCheck((check) => !check);
   };
@@ -73,8 +79,6 @@ function RightForm() {
       };
       console.log(newUser);
     }
-
-    
   };
   return (
     <Wrapper direction="column" style={{ paddingRight: "35px" }}>
@@ -131,24 +135,32 @@ function RightForm() {
             valid={validator.isEmail(form.email)}
           />
           <MobileInput>
-          <Select
+            <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={'india'}
+              value={"india"}
               // onChange={handleChange}
             >
-              <MenuItem value={'india'}><img src="https://www.kindpng.com/picc/m/133-1330075_india-transparent-button-png-indian-flag-icon-png.png" width="30" alt="india" srcset="" /></MenuItem>
-          </Select>
-          <Input
-            onChange={formOnChange}
-            name="mobile"
-            value={form.mobile}
-            formdark={primary.formdark}
-            formgrey={primary.formgrey}
-            width="1"
-            label="Mobile Number"
-            type="number"
-            valid={form.mobile.length === 10} />
+              <MenuItem value={"india"}>
+                <img
+                  src="https://www.kindpng.com/picc/m/133-1330075_india-transparent-button-png-indian-flag-icon-png.png"
+                  width="30"
+                  alt="india"
+                  srcset=""
+                />
+              </MenuItem>
+            </Select>
+            <Input
+              onChange={formOnChange}
+              name="mobile"
+              value={form.mobile}
+              formdark={primary.formdark}
+              formgrey={primary.formgrey}
+              width="1"
+              label="Mobile Number"
+              type="number"
+              valid={form.mobile.length === 10}
+            />
           </MobileInput>
         </Wrapper>
 

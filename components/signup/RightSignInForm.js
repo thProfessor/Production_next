@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { primary } from "../../styles/pallete";
 import { FaRegEye } from "react-icons/fa";
 import { RiEyeCloseLine } from "react-icons/ri";
+
 import {
   Input,
   StyledButton,
@@ -12,47 +13,20 @@ import {
   Wrapper,
   Formheading,
   CheckBox,
+  Error,
 } from "./SignupComp";
 import validator from "validator";
 import { Alert } from "@material-ui/lab";
 import axios from "axios";
+import useForm from "../../utility/validation/useForm";
 
 function RightForm() {
   const [check, setCheck] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
 
-  const handleCheck = () => {
-    setCheck((check) => !check);
-  };
+  // form validation
+  const { formOnChange, onSubmit, form, errors } = useForm(validate, "signin");
 
-  const formOnChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  const [notify, setNotify] = useState({ open: false, message: "", type: "" });
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if(form.email===''||form.password===''){
-      setNotify({ open: true, message: "Fill all the fields", type: "error" });
-    }
-    else{
-      const oldUser = {
-        username: form.email,
-        password: form.password,
-      };
-      axios.post('https://skilzen-app.herokuapp.com/api/skilzen/v1/login/',oldUser)
-      .then(res=>{
-        // console.log(res);
-        const {data:{token}} =res;
-        localStorage.setItem('accesstoken',token);
-      })
-      .catch((err)=>console.log(err));
-    }
-    
-  };
   return (
     <Wrapper
       direction="column"
@@ -84,8 +58,8 @@ function RightForm() {
           width="2"
           label="Email"
           type="email"
-          valid={validator.isEmail(form.email)}
         />
+        <Error>{errors && errors.email}</Error>
         <PasswordWrapper>
           <Input
             onChange={formOnChange}
@@ -96,20 +70,20 @@ function RightForm() {
             width="2"
             label="Password"
             type={showPassword ? "text" : "password"}
-            valid={form.password.length>0}
           />
           {showPassword ? (
-            <Eye onClick={() => setShowPassword(false)} />
+            <Eye onClick={() => setShowPassword((prev) => !prev)} />
           ) : (
-            <CloseEye onClick={() => setShowPassword(true)} />
+            <CloseEye onClick={() => setShowPassword((prev) => !prev)} />
           )}
         </PasswordWrapper>
+        <Error>{errors && errors.password}</Error>
         <Wrapper direction="row" style={{ justifyContent: "space-between" }}>
           <FormControlLabel
             control={
               <CheckBox
                 checked={check}
-                onChange={handleCheck}
+                onChange={() => setCheck((prev) => !prev)}
                 name="checkedB"
                 color={primary.cherry}
               />
@@ -139,20 +113,7 @@ function RightForm() {
           </Link>
         </Formheading>
       </StyledForm>
-      <Snackbar
-        open={notify.open}
-        autoHideDuration={3000}
-        onClose={() => setNotify({ open: false, message: "", type: "" })}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert
-          variant="filled"
-          onClose={() => setNotify({ open: false, message: "", type: "" })}
-          severity={notify.type}
-        >
-          {notify.message}
-        </Alert>
-      </Snackbar>
+      {console.log(errors)}
     </Wrapper>
   );
 }
