@@ -111,7 +111,6 @@ function RightSignInForm() {
           </Link>
         </Formheading>
       </StyledForm>
-      {console.log(errors)}
     </Wrapper>
   );
 }

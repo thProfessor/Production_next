@@ -25,10 +25,6 @@ function RightForm() {
   // form validation
   const { formOnChange, onSubmit, form, errors } = useForm(validate, "signup");
 
-  const handleCheck = () => {
-    setCheck((prev) => !prev);
-  };
-
   return (
     <Wrapper direction="column" style={{ paddingRight: "35px" }}>
       <Formheading
@@ -158,7 +154,7 @@ function RightForm() {
             control={
               <CheckBox
                 checked={check}
-                onChange={handleCheck}
+                onChange={(prev) => !prev}
                 name="checkedB"
                 color={primary.cherry}
               />

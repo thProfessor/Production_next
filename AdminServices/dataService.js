@@ -35,23 +35,23 @@ class DataService {
   }
 
   get(path) {
-    return this.client.get(path).then((response) => response.data);
+    return this.client.get(path).then((response) => response);
   }
 
   post(path, payload) {
-    return this.client.post(path, payload).then((response) => response.data);
+    return this.client.post(path, payload).then((response) => response);
   }
 
   put(path, payload) {
-    return this.client.put(path, payload).then((response) => response.data);
+    return this.client.put(path, payload).then((response) => response);
   }
 
   patch(path, payload) {
-    return this.client.patch(path, payload).then((response) => response.data);
+    return this.client.patch(path, payload).then((response) => response);
   }
 
   delete(path) {
-    return this.client.delete(path).then((response) => response.data);
+    return this.client.delete(path).then((response) => response);
   }
 }
 

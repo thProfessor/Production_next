@@ -16,8 +16,8 @@ describe("login", () => {
     const expectedEmail = "abc123@gmail.com";
     const expectedPassword = "T12@jkl123";
     render(<RightSignInForm />);
-    const email = screen.getByText("Email").querySelector("input");
-    const password = screen.getByText("Password").querySelector("input");
+    const email = screen.getByLabelText("Email").querySelector("input");
+    const password = screen.getByLabelText("Password").querySelector("input");
     const signInButton = screen.getByText("SIGN IN");
 
     act(() => {

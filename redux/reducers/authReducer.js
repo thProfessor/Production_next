@@ -53,7 +53,7 @@ export default (state = initialState, action) => {
         ...state,
         token: null,
         authenticate: false,
-        message: action.payload.message,
+        message: action.payload,
         loading: false,
       });
 

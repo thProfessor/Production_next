@@ -153,6 +153,6 @@ export default {
     return client.post("/skilzen/v1/login/", data);
   },
   signUpUser: async (data) => {
-    client.post("/skilzen/v1/sign_up/", data);
+    return client.post("/skilzen/v1/sign_up/", data);
   },
 };
