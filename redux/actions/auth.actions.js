@@ -24,3 +24,25 @@ export const signIn = (user) => {
     }
   };
 };
+
+export const signUp = (user) => {
+  return async (dispatch) => {
+    dispatch({
+      type: authConstants.SIGNUP_REQUEST,
+    });
+    try {
+      const res = await AdminService.signUpUser(user);
+      console.log(res);
+      return dispatch({
+        type: authConstants.SIGNUP_SUCCESS,
+      });
+    } catch (err) {
+      return dispatch({
+        type: authConstants.SIGNUP_FAILURE,
+        payload: {
+          message: { message: err },
+        },
+      });
+    }
+  };
+};

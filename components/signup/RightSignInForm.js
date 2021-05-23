@@ -18,7 +18,7 @@ import {
 import validate from "../../utility/validation/validateInfo";
 import useForm from "../../utility/validation/useForm";
 
-function RightForm() {
+function RightSignInForm() {
   const [check, setCheck] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -116,7 +116,7 @@ function RightForm() {
   );
 }
 
-export default RightForm;
+export default RightSignInForm;
 
 const A = styled.a`
   color: ${primary.cherry};

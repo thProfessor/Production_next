@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { signIn } from "../../redux/actions/auth.actions";
+import { signIn, signUp } from "../../redux/actions/auth.actions";
 
 const useForm = (validate, page) => {
   const dispatch = useDispatch();
@@ -10,8 +10,12 @@ const useForm = (validate, page) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [form, setForm] = useState({
+    firstname: "",
+    lastname: "",
     email: "",
+    mobile: "",
     password: "",
+    confirmPassword: "",
   });
 
   if (page === "signin") {
@@ -27,22 +31,17 @@ const useForm = (validate, page) => {
   }
 
   if (page === "signup") {
-    const [form, setForm] = useState({
-      firstname: "",
-      lastname: "",
-      email: "",
-      mobile: "",
-      password: "",
-      confirmPassword: "",
-    });
-
     useEffect(() => {
       if (Object.keys(errors).length === 0 && isSubmitting) {
-        const oldUser = {
-          username: form.email,
+        const newUser = {
+          firstname: form.firstname,
+          lastname: form.lastname,
+          email: form.email,
+          phone_number: form.mobile,
           password: form.password,
+          password_confirmation: form.confirmPassword,
         };
-        dispatch(signIn(oldUser));
+        dispatch(signUp(newUser));
       }
     }, [errors]);
   }
@@ -59,7 +58,7 @@ const useForm = (validate, page) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    setErrors(validate(form));
+    setErrors(validate(form, page));
     setIsSubmitting(true);
   };
 

@@ -1,10 +1,4 @@
-import {
-  FormControlLabel,
-  MenuItem,
-  Select,
-  Snackbar,
-} from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+import { FormControlLabel, MenuItem, Select } from "@material-ui/core";
 import Link from "next/link";
 import { useState } from "react";
 import { primary } from "../../styles/pallete";
@@ -19,67 +13,22 @@ import {
   Formheading,
   CheckBox,
   MobileInput,
+  Error,
 } from "./SignupComp";
 import styled from "styled-components";
-import validator from "validator";
+import validate from "../../utility/validation/validateInfo";
+import useForm from "../../utility/validation/useForm";
 
 function RightForm() {
   const [check, setCheck] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [form, setForm] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    mobile: "",
-    password: "",
-    confirmPassword: "",
-  });
+  // form validation
+  const { formOnChange, onSubmit, form, errors } = useForm(validate, "signup");
 
   const handleCheck = () => {
-    setCheck((check) => !check);
-  };
-  const formOnChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setCheck((prev) => !prev);
   };
 
-  const [notify, setNotify] = useState({ open: false, message: "", type: "" });
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (
-      form.firstname === "" ||
-      form.lastname === "" ||
-      form.email === "" ||
-      form.mobile === "" ||
-      form.password === "" ||
-      form.confirmPassword === ""
-    ) {
-      setNotify({ open: true, message: "Fill all the fields", type: "error" });
-    } else if (!validator.isEmail(form.email)) {
-      setNotify({ open: true, message: "Invalid Email", type: "error" });
-    } else if (form.mobile.length !== 10) {
-      setNotify({
-        open: true,
-        message: "Invalid Mobile Number",
-        type: "error",
-      });
-    } else if (form.password !== form.confirmPassword) {
-      setNotify({
-        open: true,
-        message: "Passwords not matched",
-        type: "error",
-      });
-    } else {
-      console.log("call API!!");
-      const newUser = {
-        firstname: form.firstname,
-        lastname: form.lastname,
-        email: form.email,
-        mobile: form.mobile,
-        password: form.password,
-      };
-      console.log(newUser);
-    }
-  };
   return (
     <Wrapper direction="column" style={{ paddingRight: "35px" }}>
       <Formheading
@@ -100,68 +49,79 @@ function RightForm() {
       </Formheading>
       <StyledForm>
         <Wrapper direction="row">
-          <Input
-            onChange={formOnChange}
-            name="firstname"
-            value={form.firstname}
-            formdark={primary.formdark}
-            formgrey={primary.formgrey}
-            width="1"
-            label="First Name"
-            valid={form.firstname.length > 0}
-          />
-          <Input
-            onChange={formOnChange}
-            name="lastname"
-            value={form.lastname}
-            formdark={primary.formdark}
-            formgrey={primary.formgrey}
-            width="1"
-            label="Last Name"
-            valid={form.lastname.length > 0}
-          />
-        </Wrapper>
-
-        <Wrapper direction="row">
-          <Input
-            onChange={formOnChange}
-            name="email"
-            value={form.email}
-            formdark={primary.formdark}
-            formgrey={primary.formgrey}
-            width="1"
-            label="Email Address"
-            type="email"
-            valid={validator.isEmail(form.email)}
-          />
-          <MobileInput>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={"india"}
-              // onChange={handleChange}
-            >
-              <MenuItem value={"india"}>
-                <img
-                  src="https://www.kindpng.com/picc/m/133-1330075_india-transparent-button-png-indian-flag-icon-png.png"
-                  width="30"
-                  alt="india"
-                  srcset=""
-                />
-              </MenuItem>
-            </Select>
+          <Wrapper direction="column">
             <Input
               onChange={formOnChange}
-              name="mobile"
-              value={form.mobile}
+              name="firstname"
+              value={form.firstname}
               formdark={primary.formdark}
               formgrey={primary.formgrey}
               width="1"
-              label="Mobile Number"
-              type="number"
-              valid={form.mobile.length === 10}
+              label="First Name"
+              type="text"
             />
-          </MobileInput>
+            <Error>{errors && errors.firstname}</Error>
+          </Wrapper>
+          <Wrapper direction="column">
+            <Input
+              onChange={formOnChange}
+              name="lastname"
+              value={form.lastname}
+              formdark={primary.formdark}
+              formgrey={primary.formgrey}
+              width="1"
+              label="Last Name"
+              type="text"
+            />
+            <Error>{errors && errors.lastname}</Error>
+          </Wrapper>
+        </Wrapper>
+
+        <Wrapper direction="row">
+          <Wrapper direction="column">
+            <Input
+              onChange={formOnChange}
+              name="email"
+              value={form.email}
+              formdark={primary.formdark}
+              formgrey={primary.formgrey}
+              width="1"
+              label="Email Address"
+              type="email"
+            />
+            <Error>{errors && errors.email}</Error>
+          </Wrapper>
+          <Wrapper direction="column">
+            <MobileInput>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={"india"}
+                // onChange={handleChange}
+              >
+                <MenuItem value={"india"}>
+                  <img
+                    src="https://www.kindpng.com/picc/m/133-1330075_india-transparent-button-png-indian-flag-icon-png.png"
+                    width="30"
+                    alt="india"
+                    srcset=""
+                  />
+                </MenuItem>
+              </Select>
+
+              <Input
+                onChange={formOnChange}
+                name="mobile"
+                value={form.mobile}
+                formdark={primary.formdark}
+                formgrey={primary.formgrey}
+                width="1"
+                label="Mobile Number"
+                type="number"
+              />
+            </MobileInput>
+            <Error>{errors && errors.mobile}</Error>
+          </Wrapper>
         </Wrapper>
 
         <Wrapper direction="column">
@@ -175,7 +135,6 @@ function RightForm() {
               width="2"
               label="Password"
               type={showPassword ? "text" : "password"}
-              valid={form.password.length >= 8}
             />
             {showPassword ? (
               <Eye onClick={() => setShowPassword(false)} />
@@ -183,7 +142,7 @@ function RightForm() {
               <CloseEye onClick={() => setShowPassword(true)} />
             )}
           </PasswordWrapper>
-
+          <Error>{errors && errors.password}</Error>
           <Input
             onChange={formOnChange}
             name="confirmPassword"
@@ -193,11 +152,8 @@ function RightForm() {
             width="2"
             label="Re-enter Password"
             type="password"
-            valid={
-              form.password.length >= 8 &&
-              form.password === form.confirmPassword
-            }
           />
+          <Error>{errors && errors.confirmPassword}</Error>
           <FormControlLabel
             control={
               <CheckBox
@@ -225,20 +181,6 @@ function RightForm() {
           </Link>
         </Formheading>
       </StyledForm>
-      <Snackbar
-        open={notify.open}
-        autoHideDuration={3000}
-        onClose={() => setNotify({ open: false, message: "", type: "" })}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert
-          variant="filled"
-          onClose={() => setNotify({ open: false, message: "", type: "" })}
-          severity={notify.type}
-        >
-          {notify.message}
-        </Alert>
-      </Snackbar>
     </Wrapper>
   );
 }
