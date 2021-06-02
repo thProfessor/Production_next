@@ -32,5 +32,5 @@ const LeftContainer = styled.div`
   align-items: center;
   padding: 2em 4em;
   position: relative;
-  border-radius: 20px;
+  border-radius: 20px 0 0 20px;
 `;
