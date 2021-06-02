@@ -147,7 +147,12 @@ export default {
   getSavedInternships: async () => {
     return client.get(`/internship/v1/internships/bookmarked`);
   },
+
+  // auth api calls
   signInUser: async (data) => {
     return client.post("/skilzen/v1/login/", data);
+  },
+  signUpUser: async (data) => {
+    return client.post("/skilzen/v1/sign_up/", data);
   },
 };

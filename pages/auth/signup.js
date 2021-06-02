@@ -1,3 +1,4 @@
+import PopupContainer from "../../components/globalUi/Popup";
 import LeftForm from "../../components/signup/LeftForm";
 import RightForm from "../../components/signup/RightForm";
 import {
@@ -17,9 +18,8 @@ function signup() {
           style={{
             position: "absolute",
             zIndex: "-1",
-            bottom: "50px",
-            left: "40px",
-            transform: "scale(1.4) rotate(90deg)",
+            bottom: "0px",
+            left: "0px",
           }}
         />
         <Slide>
@@ -35,8 +35,7 @@ function signup() {
             position: "absolute",
             zIndex: "-1",
             top: "0px",
-            right: "50px",
-            transform: "rotate(90deg)",
+            right: "0px",
           }}
         />
       </Background>
@@ -44,4 +43,5 @@ function signup() {
   );
 }
 
-export default PrivateRoute(signup);
+// export default PrivateRoute(signup);
+export default PopupContainer(signup);

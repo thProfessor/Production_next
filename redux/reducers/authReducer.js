@@ -15,6 +15,7 @@ export default (state = initialState, action) => {
         ...state,
         loading: true,
       });
+
     case authConstants.SIGNIN_SUCCESS:
       return (state = {
         ...state,
@@ -30,6 +31,29 @@ export default (state = initialState, action) => {
         token: null,
         authenticate: false,
         message: "Failed Login",
+        loading: false,
+      });
+
+    case authConstants.SIGNUP_REQUEST:
+      return (state = {
+        ...state,
+        loading: true,
+      });
+
+    case authConstants.SIGNUP_SUCCESS:
+      return (state = {
+        ...state,
+        authenticate: true,
+        loading: false,
+        message: "success",
+      });
+
+    case authConstants.SIGNUP_FAILURE:
+      return (state = {
+        ...state,
+        token: null,
+        authenticate: false,
+        message: action.payload,
         loading: false,
       });
 

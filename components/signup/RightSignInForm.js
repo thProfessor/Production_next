@@ -20,7 +20,7 @@ import { Alert } from "@material-ui/lab";
 import axios from "axios";
 import useForm from "../../utility/validation/useForm";
 
-function RightForm() {
+function RightSignInForm() {
   const [check, setCheck] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -28,26 +28,23 @@ function RightForm() {
   const { formOnChange, onSubmit, form, errors } = useForm(validate, "signin");
 
   return (
-    <Wrapper
-      direction="column"
-      style={{ paddingRight: "45px", height: "120%" }}
-    >
-      <Formheading
+    <Wrapper direction="column" style={{ paddingRight: "8em" }}>
+      <Typography
         size="42"
         color={primary.cherry}
         weight="6"
-        style={{ margin: "50px 0" }}
+        style={{ margin: "3em 0 0" }}
       >
         Welcome Back!
-      </Formheading>
-      <Formheading
+      </Typography>
+      <Typography
         size="32"
         color={primary.formDarkGrey}
         weight="6"
-        style={{ margin: "30px 0" }}
+        style={{ margin: "0.8em 0" }}
       >
         Sign In
-      </Formheading>
+      </Typography>
       <StyledForm>
         <Input
           onChange={formOnChange}
@@ -94,10 +91,15 @@ function RightForm() {
             <A style={{ marginTop: "5px" }}>Forgot Password</A>
           </Link>
         </Wrapper>
-        <StyledButton width="4" borderColor={primary.cherry} onClick={onSubmit}>
+        <StyledButton
+          width="4"
+          radius="17"
+          borderColor={primary.cherry}
+          onClick={onSubmit}
+        >
           SIGN IN
         </StyledButton>
-        <Formheading
+        <Typography
           size="14"
           color={primary.formdark}
           weight="4"
@@ -111,18 +113,17 @@ function RightForm() {
           <Link href="/auth/signup">
             <A>Sign up</A>
           </Link>
-        </Formheading>
+        </Typography>
       </StyledForm>
-      {console.log(errors)}
     </Wrapper>
   );
 }
 
-export default RightForm;
+export default RightSignInForm;
 
 const A = styled.a`
   color: ${primary.cherry};
-  margin-left: "3px";
+  margin-left: 3px;
   cursor: pointer;
 `;
 const PasswordWrapper = styled.div`
