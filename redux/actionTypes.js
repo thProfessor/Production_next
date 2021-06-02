@@ -51,3 +51,9 @@ export const addProfile={
 export const DashBoard = {
   GET_POSTINGS:'GET_POSTINGS'
 }
+export const Internships = {
+  GET_INTERNSHIP:'GET_INTERNSHIP',
+  GET_CATEGORIES:'GET_CATEGORIES',
+  GET_FEATURED_JOBS:'GET_FEATURED_JOBS',
+
+}
