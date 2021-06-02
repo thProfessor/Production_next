@@ -7,23 +7,17 @@ import { mobile, tablet } from "../../styles/mediaQuerries";
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  row-gap: 17px;
-  max-width: 450px;
+  row-gap: ${(props) => props.rowGap || 17}px;
   padding-bottom: 20px;
   ${mobile} {
     max-width: 450px;
   }
 `;
-export const Formheading = styled.h1`
-  color: ${(props) => props.color};
-  font-family: ${fontFamily.font};
-  font-weight: ${(props) => props.weight * 100}px;
-  font-size: ${(props) => props.size}px;
-`;
+
 export const Wrapper = styled.div`
   display: flex;
-  column-gap: ${(props) => props.columnGap || 50}px;
-  row-gap: 17px;
+  column-gap: ${(props) => (props.columnGap ? props.columnGap : 6)}em;
+  row-gap: ${(props) => props.rowGap || 17}px;
   flex-direction: ${(props) => props.direction};
   ${tablet} {
     flex-direction: column;
@@ -66,7 +60,7 @@ export const Input = styled(TextField)`
   .MuiInput-underline:after {
     transform: scaleX(1);
     border-color: ${(props) =>
-      props.valid ? secondary.greenSecondary : secondary.cherrySecondary};
+      props.valid ? secondary.greenSecondary : "#CDDBEA"};
   }
   ${tablet} {
     max-width: 460px;
@@ -81,29 +75,6 @@ export const CheckBox = styled(Checkbox)`
     font-family: ${fontFamily.font};
     color: ${primary.checkbox};
     font-weight: 400;
-  }
-`;
-
-export const StyledButton = styled.button`
-  border: 2px solid ${(props) => props.borderColor};
-  border-radius: 17px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Gordita";
-  font-weight: 500;
-  font-size: 14px;
-  max-width: ${(props) => props.width * 110}px;
-  cursor: pointer;
-  background: transparent;
-  padding: 0.8em 0;
-  & :hover {
-    background: ${(props) => props.borderColor};
-    color: ${minimal.white};
-  }
-  & :active {
-    background: ${(props) => props.borderColor};
-    color: ${minimal.white};
   }
 `;
 

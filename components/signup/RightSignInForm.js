@@ -6,15 +6,8 @@ import { primary } from "../../styles/pallete";
 import { FaRegEye } from "react-icons/fa";
 import { RiEyeCloseLine } from "react-icons/ri";
 
-import {
-  Input,
-  StyledButton,
-  StyledForm,
-  Wrapper,
-  Formheading,
-  CheckBox,
-  Error,
-} from "./SignupComp";
+import { Input, StyledForm, Wrapper, CheckBox, Error } from "./SignupComp";
+import { Typography, StyledButton } from "../globalUi/Ui";
 import validate from "../../utility/validation/validateInfo";
 import useForm from "../../utility/validation/useForm";
 
@@ -26,26 +19,23 @@ function RightSignInForm() {
   const { formOnChange, onSubmit, form, errors } = useForm(validate, "signin");
 
   return (
-    <Wrapper
-      direction="column"
-      style={{ paddingRight: "45px", height: "120%" }}
-    >
-      <Formheading
+    <Wrapper direction="column" style={{ paddingRight: "8em" }}>
+      <Typography
         size="42"
         color={primary.cherry}
         weight="6"
-        style={{ margin: "50px 0" }}
+        style={{ margin: "3em 0 0" }}
       >
         Welcome Back!
-      </Formheading>
-      <Formheading
+      </Typography>
+      <Typography
         size="32"
         color={primary.formDarkGrey}
         weight="6"
-        style={{ margin: "30px 0" }}
+        style={{ margin: "0.8em 0" }}
       >
         Sign In
-      </Formheading>
+      </Typography>
       <StyledForm>
         <Input
           onChange={formOnChange}
@@ -92,10 +82,15 @@ function RightSignInForm() {
             <A style={{ marginTop: "5px" }}>Forgot Password</A>
           </Link>
         </Wrapper>
-        <StyledButton width="4" borderColor={primary.cherry} onClick={onSubmit}>
+        <StyledButton
+          width="4"
+          radius="17"
+          borderColor={primary.cherry}
+          onClick={onSubmit}
+        >
           SIGN IN
         </StyledButton>
-        <Formheading
+        <Typography
           size="14"
           color={primary.formdark}
           weight="4"
@@ -109,7 +104,7 @@ function RightSignInForm() {
           <Link href="/auth/signup">
             <A>Sign up</A>
           </Link>
-        </Formheading>
+        </Typography>
       </StyledForm>
     </Wrapper>
   );
@@ -119,7 +114,7 @@ export default RightSignInForm;
 
 const A = styled.a`
   color: ${primary.cherry};
-  margin-left: "3px";
+  margin-left: 3px;
   cursor: pointer;
 `;
 const PasswordWrapper = styled.div`

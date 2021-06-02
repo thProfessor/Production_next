@@ -7,14 +7,13 @@ import { RiEyeCloseLine } from "react-icons/ri";
 
 import {
   Input,
-  StyledButton,
   StyledForm,
   Wrapper,
-  Formheading,
   CheckBox,
   MobileInput,
   Error,
 } from "./SignupComp";
+import { Typography, StyledButton } from "../globalUi/Ui";
 import styled from "styled-components";
 import validate from "../../utility/validation/validateInfo";
 import useForm from "../../utility/validation/useForm";
@@ -26,25 +25,25 @@ function RightForm() {
   const { formOnChange, onSubmit, form, errors } = useForm(validate, "signup");
 
   return (
-    <Wrapper direction="column" style={{ paddingRight: "35px" }}>
-      <Formheading
+    <Wrapper direction="column" style={{ paddingRight: "6em" }}>
+      <Typography
         size="42"
         color={primary.cherry}
         weight="6"
-        style={{ margin: "25px 0 20px" }}
+        style={{ margin: "1em 0 0.4em 0" }}
       >
         Let's get you <br /> started!
-      </Formheading>
-      <Formheading
+      </Typography>
+      <Typography
         size="32"
         color={primary.formDarkGrey}
         weight="6"
-        style={{ marginBottom: "20px" }}
+        style={{ marginBottom: "0.5em" }}
       >
         Sign Up
-      </Formheading>
-      <StyledForm>
-        <Wrapper direction="row">
+      </Typography>
+      <StyledForm rowGap={1}>
+        <Wrapper direction="row" columnGap={3}>
           <Wrapper direction="column">
             <Input
               onChange={formOnChange}
@@ -73,7 +72,7 @@ function RightForm() {
           </Wrapper>
         </Wrapper>
 
-        <Wrapper direction="row">
+        <Wrapper direction="row" columnGap={3}>
           <Wrapper direction="column">
             <Input
               onChange={formOnChange}
@@ -111,7 +110,7 @@ function RightForm() {
                 value={form.mobile}
                 formdark={primary.formdark}
                 formgrey={primary.formgrey}
-                width="1"
+                width="0.6"
                 label="Mobile Number"
                 type="number"
               />
@@ -154,7 +153,7 @@ function RightForm() {
             control={
               <CheckBox
                 checked={check}
-                onChange={(prev) => !prev}
+                onChange={() => setCheck(!check)}
                 name="checkedB"
                 color={primary.cherry}
               />
@@ -162,20 +161,30 @@ function RightForm() {
             label="Keep me logged in"
           />
         </Wrapper>
-        <StyledButton width="4" borderColor={primary.cherry} onClick={onSubmit}>
+        <StyledButton
+          width="4"
+          radius="17"
+          borderColor={primary.lightCherry}
+          onClick={onSubmit}
+        >
           SIGN UP
         </StyledButton>
-        <Formheading
+        <Typography
           size="14"
           color={primary.formdark}
           weight="4"
-          style={{ display: "flex", justifyContent: "center" }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "center",
+            marginTop: "10px",
+          }}
         >
           Already on Skilzen? Go to
           <Link href="/auth/signin">
-            <a style={{ color: primary.cherry, marginLeft: "3px" }}>Sign in</a>
+            <A>Sign in</A>
           </Link>
-        </Formheading>
+        </Typography>
       </StyledForm>
     </Wrapper>
   );
@@ -200,5 +209,10 @@ const CloseEye = styled(RiEyeCloseLine)`
   position: absolute;
   top: 1.2em;
   right: 0;
+  cursor: pointer;
+`;
+const A = styled.a`
+  color: ${primary.cherry};
+  margin-left: 3px;
   cursor: pointer;
 `;

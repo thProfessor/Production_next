@@ -10,13 +10,13 @@ function LeftForm({ image }) {
           width="103"
           src="../images/logo.png"
           alt="logo"
-          style={{ position: "absolute", top: "35px", left: "28px" }}
+          style={{ position: "absolute", top: "2em", left: "2em" }}
         />
         <StyledImage
           width="445.89"
           src={image}
           alt="desk"
-          style={{ transform: "translateY(10%)" }}
+          style={{ transform: "translateY(4em)" }}
         />
       </Wrapper>
     </LeftContainer>
@@ -30,7 +30,7 @@ const LeftContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 28px 35px;
+  padding: 2em 4em;
   position: relative;
   border-radius: 20px;
 `;

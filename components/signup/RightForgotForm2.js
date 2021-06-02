@@ -5,69 +5,42 @@ import styled from "styled-components";
 import { primary } from "../../styles/pallete";
 import { FaRegEye } from "react-icons/fa";
 import { RiEyeCloseLine } from "react-icons/ri";
-import {
-  Input,
-  StyledButton,
-  StyledForm,
-  Wrapper,
-  Formheading,
-  CheckBox,
-} from "./SignupComp";
-
-import { Alert } from "@material-ui/lab";
+import { Input, StyledForm, Wrapper, CheckBox } from "./SignupComp";
+import { Typography, StyledButton } from "../globalUi/Ui";
+import validate from "../../utility/validation/validateInfo";
+import useForm from "../../utility/validation/useForm";
 
 function RightForgotForm2() {
   const [check, setCheck] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [form, setForm] = useState({
-    code: "",
-    password: "",
-    reenterpassword: "",
-  });
 
-  const handleCheck = () => {
-    setCheck((check) => !check);
-  };
+  // form validation
+  const { formOnChange, onSubmit, form, errors } = useForm(
+    validate,
+    "forgotPassword2"
+  );
 
-  const formOnChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  const [notify, setNotify] = useState({ open: false, message: "", type: "" });
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (
-      form.code !== "" ||
-      form.password !== "" ||
-      form.reenterpassword !== ""
-    ) {
-      setNotify({ open: true, message: "Fill all the fields", type: "error" });
-    } else {
-      const reset = {
-        code: form.code,
-        password: form.password,
-      };
-      console.log(reset);
-    }
-  };
   return (
-    <Wrapper direction="column" style={{ paddingRight: "45px" }}>
-      <Formheading
+    <Wrapper
+      direction="column"
+      style={{ padding: "0 8em 1em 0", width: "500px" }}
+    >
+      <Typography
         size="42"
         color={primary.cherry}
         weight="6"
-        style={{ margin: "20px 0" }}
+        style={{ margin: "2em 0 0" }}
       >
         Almost Done!
-      </Formheading>
-      <Formheading
+      </Typography>
+      <Typography
         size="32"
         color={primary.formDarkGrey}
         weight="6"
-        style={{ margin: "30px 0" }}
+        style={{ margin: "0.8em 0" }}
       >
         Password Reset
-      </Formheading>
+      </Typography>
       <StyledForm>
         <Input
           onChange={formOnChange}
@@ -90,7 +63,6 @@ function RightForgotForm2() {
             width="2"
             label="Password"
             type={showPassword ? "text" : "password"}
-            valid={form.password.length > 0}
           />
           {showPassword ? (
             <Eye onClick={() => setShowPassword(false)} />
@@ -114,32 +86,23 @@ function RightForgotForm2() {
           control={
             <CheckBox
               checked={check}
-              onChange={handleCheck}
+              onChange={() => setCheck(!check)}
               name="checkedB"
-              color={primary.cherry}
+              color={primary.lightCherry}
             />
           }
           label="Keep me logged in"
         />
-
-        <StyledButton width="4" borderColor={primary.cherry} onClick={onSubmit}>
+        {console.log(errors)}
+        <StyledButton
+          width="4"
+          radius="17"
+          borderColor={primary.lightCherry}
+          onClick={onSubmit}
+        >
           Save
         </StyledButton>
       </StyledForm>
-      <Snackbar
-        open={notify.open}
-        autoHideDuration={3000}
-        onClose={() => setNotify({ open: false, message: "", type: "" })}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert
-          variant="filled"
-          onClose={() => setNotify({ open: false, message: "", type: "" })}
-          severity={notify.type}
-        >
-          {notify.message}
-        </Alert>
-      </Snackbar>
     </Wrapper>
   );
 }

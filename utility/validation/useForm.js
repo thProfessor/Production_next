@@ -16,6 +16,8 @@ const useForm = (validate, page) => {
     mobile: "",
     password: "",
     confirmPassword: "",
+    code: "",
+    reenterpassword: "",
   });
 
   if (page === "signin") {
@@ -46,6 +48,17 @@ const useForm = (validate, page) => {
     }, [errors]);
   }
 
+  if (page === "forgotPassword2") {
+    useEffect(() => {
+      if (Object.keys(errors).length === 0 && isSubmitting) {
+        const reset = {
+          code: form.code,
+          password: form.password,
+        };
+        console.log(reset);
+      }
+    }, [errors]);
+  }
   // common functions
   const formOnChange = (e) => {
     const { name, value } = e.target;

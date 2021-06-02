@@ -42,5 +42,13 @@ export default function validateInfo(form, page) {
       errors.confirmPassword = "Passwords do not match";
     }
   }
+
+  if (page === "forgotPassword2") {
+    if (isEmpty(form.code)) {
+      errors.code = "code is required";
+    } else if (form.code.length !== 4) {
+      errors.code = "should be of 4 characters";
+    }
+  }
   return errors;
 }
