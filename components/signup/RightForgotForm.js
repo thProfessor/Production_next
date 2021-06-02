@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { primary } from "../../styles/pallete";
-import {
-  Input,
-  StyledButton,
-  StyledForm,
-  Wrapper,
-  Formheading,
-} from "./SignupComp";
+import { Input, StyledForm, Wrapper } from "./SignupComp";
+import { useRouter } from "next/router";
+import { Typography, StyledButton } from "../globalUi/Ui";
 
 function RightForm() {
   const [form, setForm] = useState({
     email: "",
     contact: "",
   });
+
+  const router = useRouter();
 
   const formOnChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -22,29 +20,30 @@ function RightForm() {
     e.preventDefault();
     const oldUser = {
       email: form.email,
-      password: form.contact,
+      contact: form.contact,
     };
     console.log(oldUser);
+    router.push("/auth/forgotpassword2");
   };
   return (
-    <Wrapper direction="column" style={{ paddingRight: "35px" }}>
-      <Formheading
+    <Wrapper direction="column" style={{ paddingRight: "8em" }}>
+      <Typography
         size="42"
         color={primary.cherry}
         weight="6"
-        style={{ margin: "40px 0" }}
+        style={{ margin: "1.2em 0 0.5em" }}
       >
         Let us help!
-      </Formheading>
-      <Formheading
+      </Typography>
+      <Typography
         size="32"
         color={primary.formDarkGrey}
         weight="6"
-        style={{ margin: "35px 0 20px" }}
+        style={{ margin: "1.2em 0" }}
       >
         Forgot Password
-      </Formheading>
-      <Formheading
+      </Typography>
+      <Typography
         size="12"
         color={primary.cherry}
         weight="4"
@@ -52,7 +51,7 @@ function RightForm() {
       >
         Mention your Registered Email/mobile number to get the verification
         code.
-      </Formheading>
+      </Typography>
       <StyledForm>
         <Input
           onChange={formOnChange}
@@ -65,14 +64,14 @@ function RightForm() {
           type="email"
         />
 
-        <Formheading
+        <Typography
           size="14"
           color={primary.cherry}
           weight="4"
           style={{ margin: "10px auto" }}
         >
           OR
-        </Formheading>
+        </Typography>
 
         <Input
           onChange={formOnChange}
@@ -87,13 +86,14 @@ function RightForm() {
 
         <StyledButton
           width="4"
-          borderColor={primary.cherry}
+          borderColor={primary.lightCherry}
+          radius="17"
           onClick={onSubmit}
           style={{ marginTop: "20px" }}
         >
           SEND
         </StyledButton>
-        <Formheading
+        <Typography
           size="10"
           color={primary.formgrey}
           weight="4"
@@ -103,7 +103,7 @@ function RightForm() {
           }}
         >
           Check you Email/Text to get the code
-        </Formheading>
+        </Typography>
       </StyledForm>
     </Wrapper>
   );

@@ -14,3 +14,6 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
+
+// global styles applied
+// redux store client side copy provided

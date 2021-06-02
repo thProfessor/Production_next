@@ -1,41 +1,37 @@
 import { FormControlLabel, Snackbar } from "@material-ui/core";
-import Link from "next/link";
+
 import { useState } from "react";
 import styled from "styled-components";
 import { primary } from "../../styles/pallete";
 import { FaRegEye } from "react-icons/fa";
 import { RiEyeCloseLine } from "react-icons/ri";
-
-import {
-  Input,
-  StyledButton,
-  StyledForm,
-  Wrapper,
-  Formheading,
-  CheckBox,
-  Error,
-} from "./SignupComp";
-import validator from "validator";
-import { Alert } from "@material-ui/lab";
-import axios from "axios";
+import { Input, StyledForm, Wrapper, CheckBox } from "./SignupComp";
+import { Typography, StyledButton } from "../globalUi/Ui";
+import validate from "../../utility/validation/validateInfo";
 import useForm from "../../utility/validation/useForm";
 
-function RightSignInForm() {
+function RightForgotForm2() {
   const [check, setCheck] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   // form validation
-  const { formOnChange, onSubmit, form, errors } = useForm(validate, "signin");
+  const { formOnChange, onSubmit, form, errors } = useForm(
+    validate,
+    "forgotPassword2"
+  );
 
   return (
-    <Wrapper direction="column" style={{ paddingRight: "8em" }}>
+    <Wrapper
+      direction="column"
+      style={{ padding: "0 8em 1em 0", width: "500px" }}
+    >
       <Typography
         size="42"
         color={primary.cherry}
         weight="6"
-        style={{ margin: "3em 0 0" }}
+        style={{ margin: "2em 0 0" }}
       >
-        Welcome Back!
+        Almost Done!
       </Typography>
       <Typography
         size="32"
@@ -43,20 +39,20 @@ function RightSignInForm() {
         weight="6"
         style={{ margin: "0.8em 0" }}
       >
-        Sign In
+        Password Reset
       </Typography>
       <StyledForm>
         <Input
           onChange={formOnChange}
-          name="email"
-          value={form.email}
+          name="code"
+          value={form.code}
           formdark={primary.formdark}
           formgrey={primary.formgrey}
           width="2"
-          label="Email"
-          type="email"
+          label="Verification Code"
+          placeholder="4-digit code"
+          type="number"
         />
-        <Error>{errors && errors.email}</Error>
         <PasswordWrapper>
           <Input
             onChange={formOnChange}
@@ -69,61 +65,53 @@ function RightSignInForm() {
             type={showPassword ? "text" : "password"}
           />
           {showPassword ? (
-            <Eye onClick={() => setShowPassword((prev) => !prev)} />
+            <Eye onClick={() => setShowPassword(false)} />
           ) : (
-            <CloseEye onClick={() => setShowPassword((prev) => !prev)} />
+            <CloseEye onClick={() => setShowPassword(true)} />
           )}
         </PasswordWrapper>
-        <Error>{errors && errors.password}</Error>
-        <Wrapper direction="row" style={{ justifyContent: "space-between" }}>
-          <FormControlLabel
-            control={
-              <CheckBox
-                checked={check}
-                onChange={() => setCheck((prev) => !prev)}
-                name="checkedB"
-                color={primary.cherry}
-              />
-            }
-            label="Keep me logged in"
-          />
-          <Link href="/auth/forgotpassword">
-            <A style={{ marginTop: "5px" }}>Forgot Password</A>
-          </Link>
-        </Wrapper>
+
+        <Input
+          onChange={formOnChange}
+          name="reenterpassword"
+          value={form.reenterpassword}
+          formdark={primary.formdark}
+          formgrey={primary.formgrey}
+          width="2"
+          label="Re-enter Password"
+          type="password"
+        />
+
+        <FormControlLabel
+          control={
+            <CheckBox
+              checked={check}
+              onChange={() => setCheck(!check)}
+              name="checkedB"
+              color={primary.lightCherry}
+            />
+          }
+          label="Keep me logged in"
+        />
+        {console.log(errors)}
         <StyledButton
           width="4"
           radius="17"
-          borderColor={primary.cherry}
+          borderColor={primary.lightCherry}
           onClick={onSubmit}
         >
-          SIGN IN
+          Save
         </StyledButton>
-        <Typography
-          size="14"
-          color={primary.formdark}
-          weight="4"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-          }}
-        >
-          New User?
-          <Link href="/auth/signup">
-            <A>Sign up</A>
-          </Link>
-        </Typography>
       </StyledForm>
     </Wrapper>
   );
 }
 
-export default RightSignInForm;
+export default RightForgotForm2;
 
 const A = styled.a`
   color: ${primary.cherry};
-  margin-left: 3px;
+  margin-left: "3px";
   cursor: pointer;
 `;
 const PasswordWrapper = styled.div`

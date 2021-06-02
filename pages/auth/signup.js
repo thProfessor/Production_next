@@ -1,3 +1,4 @@
+import PopupContainer from "../../components/globalUi/Popup";
 import LeftForm from "../../components/signup/LeftForm";
 import RightForm from "../../components/signup/RightForm";
 import {
@@ -6,7 +7,7 @@ import {
   Background,
   StyledImage,
 } from "../../components/signup/SignupComp";
-
+import PrivateRoute from "../../utility/PrivateRoute";
 function signup() {
   return (
     <>
@@ -42,4 +43,5 @@ function signup() {
   );
 }
 
-export default signup;
+// export default PrivateRoute(signup);
+export default PopupContainer(signup);
