@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { Head3, Head5, StyledButton } from './Ui';
+import { Head3, Head5, StyledButton, Typography } from './Ui';
 // import Logo from '../../public/images/logo.png'
 
 import Image from 'next/image'
+import { minimal } from '../../styles/pallete';
 
 const PopupContainerStyled= styled.div`
 	position: fixed;
@@ -43,11 +44,11 @@ const PopupContainer = (Component)=> props=>{
         </BlurBG>
         <PopupContainerStyled>
             <PopupContent>
-                <div>
-                    <Head3 >Hurray! Welcome to Skilzen Internships</Head3>
-                    <Head5 >Congratulations, your company’s KYC is approved. Click the button below to start posting a internship today.</Head5>
+                <div style={{marginBottom:20}}>
+                    <Typography size="24" weight="5" style={{marginBottom:20}}>Hurray! Welcome to Skilzen Internships</Typography>
+                    <Typography size="18" weight="4" color={minimal.content} >Congratulations, your company’s KYC is approved. Click the button below to start posting a internship today.</Typography>
                 </div>
-                <div style={{display:'flex',justifyContent:'space-around'}}>
+                <div style={{display:'flex',justifyContent:'space-between'}}>
                     <p>SKIP FOR NOW</p>
                     <StyledButton radius='17' width="1.6" borderColor="#F26A7E" >START</StyledButton>
                 </div>

@@ -44,4 +44,5 @@ function signup() {
 }
 
 // export default PrivateRoute(signup);
-export default PopupContainer(signup);
+// export default PopupContainer(signup);
+export default signup;

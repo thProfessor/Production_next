@@ -6,18 +6,9 @@ import { primary } from "../../styles/pallete";
 import { FaRegEye } from "react-icons/fa";
 import { RiEyeCloseLine } from "react-icons/ri";
 
-import {
-  Input,
-  StyledButton,
-  StyledForm,
-  Wrapper,
-  Formheading,
-  CheckBox,
-  Error,
-} from "./SignupComp";
-import validator from "validator";
-import { Alert } from "@material-ui/lab";
-import axios from "axios";
+import { Input, StyledForm, Wrapper, CheckBox, Error } from "./SignupComp";
+import { Typography, StyledButton } from "../globalUi/Ui";
+import validate from "../../utility/validation/validateInfo";
 import useForm from "../../utility/validation/useForm";
 
 function RightSignInForm() {
