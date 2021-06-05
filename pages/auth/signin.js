@@ -1,3 +1,4 @@
+import PopupContainer from "../../components/globalUi/Popup";
 import LeftForm from "../../components/signup/LeftForm";
 import RightSignInForm from "../../components/signup/RightSignInForm";
 import {
@@ -42,4 +43,5 @@ function signin() {
   );
 }
 
-export default signin;
+export default PopupContainer(signin);
+// export default signin;
