@@ -10,13 +10,13 @@ import {
   Card__head_add_syb,
   Line,
   Card__body,
+  Card_border
 } from "../../styles/Card";
-import Card from '@material-ui/core/Card';
 
 
 function CardOuter(props) {
   return (
-    <div class="card" style={{ width: "50rem" }}>
+    <Card_border className="card">
       <Card__head>
         <Card__head_left>
           <Icon_adj>
@@ -35,7 +35,7 @@ function CardOuter(props) {
         <Line></Line>
       </div>
       <Card__body>{props.children}</Card__body>      
-     </div>
+     </Card_border>
   );
 }
 

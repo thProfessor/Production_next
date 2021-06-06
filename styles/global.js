@@ -80,6 +80,7 @@ const GlobalStyles = createGlobalStyle`
     }
   `;
 
+
 export default GlobalStyles;
 
 // global styles for single page application applied in _app.js
