@@ -22,7 +22,7 @@ function PortfolioCard(props) {
       <Card__detail_content>
         <Card__pink_text>{props.industryType}</Card__pink_text> 
         <Card__bold_text>{props.industryName}</Card__bold_text>
-        <Card__gray_text><a href="#">{props.link}</a></Card__gray_text>
+        <a href="#"><Card__gray_text>{props.link}</Card__gray_text></a>
       </Card__detail_content>
       <Card__detail_btns>
         <Card__head_edits_btns>

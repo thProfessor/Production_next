@@ -78,6 +78,7 @@ export const Percentage_bar = styled.span`
   flex-wrap: nowrap;
   margin-top: 30px;
   margin-bottom: 10px;
+  
 `;
 
 export const Icon_margin = styled.span`
